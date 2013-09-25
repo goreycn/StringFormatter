@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Carbon/Carbon.h>
+#import <Python/Python.h>
 
 EventHandlerUPP hotKeyFunction;
 
@@ -78,10 +79,22 @@ pascal OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
 
 - (void)formatTextfield
 {
-    NSString * oldStr = self.textfield.stringValue;
+    NSString * oldStr  = self.textfield.stringValue;
     NSArray * allLines = [oldStr componentsSeparatedByString:@"\n"];
+
+    NSString * sample = allLines[0];
+    NSString * sep    = self.tfSeprator.stringValue;
     
-    NSString * sep = self.tfSeprator.stringValue;
+    if (sep.length == 0) {
+        if ([sample rangeOfString:@"="].location != NSNotFound) {
+            self.tfSeprator.stringValue = @"=";
+        }else{
+            self.tfSeprator.stringValue = @"*";
+        }
+
+    }
+    
+
     
     __block NSUInteger maxPostion = 0;
     
@@ -101,7 +114,7 @@ pascal OSStatus hotKeyHandler(EventHandlerCallRef nextHandler,EventRef theEvent,
     
     NSMutableArray * result = [NSMutableArray array];
     [ma enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSString * line = (NSString *)obj;
+        NSString * line    = (NSString *)obj;
         NSString * newline = [self fillSpaceForString:line atIndex:maxPostion];
         [result addObject:newline];
     }];

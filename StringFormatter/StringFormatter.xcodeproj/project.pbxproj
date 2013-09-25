@@ -468,6 +468,7 @@
 				2F0FFCD417E9D4D10097B434 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2F0FFCD517E9D4D10097B434 /* Build configuration list for PBXNativeTarget "StringFormatterTests" */ = {
 			isa = XCConfigurationList;
@@ -476,6 +477,7 @@
 				2F0FFCD717E9D4D10097B434 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
